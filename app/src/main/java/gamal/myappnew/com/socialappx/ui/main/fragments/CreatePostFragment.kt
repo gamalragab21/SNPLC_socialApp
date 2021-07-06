@@ -15,8 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +32,6 @@ import javax.inject.Inject
 class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
 
     private var currentImageUri:Uri?=null
-   private lateinit var  permissionlistener : PermissionListener
     @Inject
     lateinit var glide:RequestManager
 
@@ -78,11 +75,13 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
         }
 
         btnSetPostImage.setOnClickListener {
-           openGallery()
+            cropContent.launch("image/*")
+
 
         }
         ivPostImage.setOnClickListener {
-            openGallery()
+            cropContent.launch("image/*")
+
         }
 
         slideUpViews(requireContext(), ivPostImage, btnSetPostImage, tilPostText, btnPost)
@@ -90,22 +89,6 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
 
     }
 
-    private fun openGallery() {
-         permissionlistener  = object : PermissionListener {
-            override fun onPermissionGranted() {
-                cropContent.launch("image/*")
-            }
-
-            override fun onPermissionDenied(deniedPermissions : List<String>) {
-               snackbar(getString(R.string.permission_gallery_denied))
-            }
-        }
-        TedPermission.with(requireContext())
-            .setPermissionListener(permissionlistener)
-            .setDeniedMessage(getString(R.string.message_gallery_permission_denied))
-            .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, )
-            .check();
-    }
 
     private fun subscribeToObservers() {
         createPostViewModel.currentImageUri.observe(viewLifecycleOwner){

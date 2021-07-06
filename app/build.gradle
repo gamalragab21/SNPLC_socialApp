@@ -141,7 +141,8 @@ dependencies {
 
     //External Libraries
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
-    implementation "gun0912.ted:tedpermission:2.2.2"
+
+    // implementation "gun0912.ted:tedpermission:2.2.2"
 //    //
 //   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21"
 //  implementation "org.jetbrains.kotlin:kotlin-reflect: $kotlin_version"

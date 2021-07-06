@@ -5,7 +5,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.gun0912.tedpermission.PermissionListener
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

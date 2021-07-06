@@ -3,9 +3,11 @@ package gamal.myappnew.com.socialappx.repositories
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import dagger.hilt.android.scopes.ViewModelScoped
+import gamal.myappnew.com.socialappx.data.entities.Comment
 import gamal.myappnew.com.socialappx.data.entities.Post
 import gamal.myappnew.com.socialappx.data.entities.User
 import gamal.myappnew.com.socialappx.other.Constants.COMMENTS
@@ -27,8 +29,8 @@ class DefaultMainRepository : MainRepository {
     private val users = fireStore.collection(USERS)
     private val posts = fireStore.collection(POSTS)
     private val comments = fireStore.collection(COMMENTS)
-    override suspend fun createPost(imageUri : Uri , text : String) : Resource<Any> =
-        withContext(Dispatchers.IO) {
+
+    override suspend fun createPost(imageUri : Uri , text : String) : Resource<Any> = withContext(Dispatchers.IO) {
             safeCall {
                 val uid = auth.currentUser !!.uid
                 val postId = UUID.randomUUID().toString()
@@ -49,8 +51,7 @@ class DefaultMainRepository : MainRepository {
             }
         }
 
-    override suspend fun getUsers(uids : List<String>) : Resource<List<User>> =
-        withContext(Dispatchers.IO) {
+    override suspend fun getUsers(uids : List<String>) : Resource<List<User>> = withContext(Dispatchers.IO) {
             safeCall {
                 val userList = users.whereIn("uid" , uids).orderBy("username").get().await()
                     .toObjects(User::class.java)
@@ -155,6 +156,47 @@ class DefaultMainRepository : MainRepository {
             val userResult=users.whereGreaterThanOrEqualTo("username", query.uppercase(Locale.ROOT))
                 .get().await().toObjects(User::class.java)
             Resource.Success(userResult)
+        }
+    }
+
+    override suspend fun createComment(commentText : String , postId : String) : Resource<Comment> = withContext(Dispatchers.IO){
+        safeCall {
+            val uid=auth.uid!!
+            val commentId=UUID.randomUUID().toString()
+            val user=getUser(uid).data!!
+            val comment=Comment(
+                commentId,
+                postId,
+                uid,
+                user.username,
+                user.profilePictureUrl,
+                commentText
+            )
+
+            comments.document(commentId).set(comment).await()
+            Resource.Success(comment)
+        }
+    }
+
+    override suspend fun deleteComment(comment : Comment) : Resource<Comment> = withContext(Dispatchers.IO){
+        safeCall {
+            comments.document(comment.commentId).delete().await()
+            Resource.Success(comment)
+        }
+    }
+
+    override suspend fun getCommentForPost(postId : String) : Resource<List<Comment>> = withContext(Dispatchers.IO){
+        safeCall {
+            val allComments = comments.whereEqualTo("postId" , postId)
+                .orderBy("date" , Query.Direction.DESCENDING)
+                .get().await()
+                .toObjects(Comment::class.java)
+                .onEach {comment->
+                    val user=getUser(comment.uid).data!!
+                    comment.username=user.username
+                    comment.profilePictureUri=user.profilePictureUrl
+                }
+            Resource.Success(allComments)
         }
     }
 

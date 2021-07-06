@@ -56,6 +56,10 @@
     <action android:id="@+id/globalActionOtherFragmentProfile"
         app:destination="@id/otherProfileFragment"/>
 
+    <action android:id="@+id/globalActionCommentDialog"
+        app:destination="@id/commentDialog"/>
+
+
 
     <fragment
         android:id="@+id/otherProfileFragment"
@@ -65,4 +69,12 @@
             android:name="uid"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/commentDialog"
+        android:name="gamal.myappnew.com.socialappx.ui.dialogs.CommentDialog"
+        android:label="CommentDialog" >
+        <argument
+            android:name="postId"
+            app:argType="string" />
+    </dialog>
 </navigation>

@@ -10,14 +10,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import gamal.myappnew.com.socialappx.R
 import gamal.myappnew.com.socialappx.other.Constants.SEARCH_TIME_DELAY
 import gamal.myappnew.com.socialappx.other.EventObserver
 import gamal.myappnew.com.socialappx.ui.adapters.UserAdapter
 import gamal.myappnew.com.socialappx.ui.auth.snackbar
+import gamal.myappnew.com.socialappx.ui.dialogs.CommentDialogDirections
 import gamal.myappnew.com.socialappx.ui.viewmodel.HomeViewModel
 import gamal.myappnew.com.socialappx.ui.viewmodel.SearchViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -49,6 +52,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
         userAdapter.setOnUserClickListener { user ->
+                if(FirebaseAuth.getInstance().uid!! == user.uid) {
+                    requireActivity().bottomNavigationView.selectedItemId = R.id.profileFragment
+                    return@setOnUserClickListener
+                }
+
             findNavController()
                 .navigate(
                     SearchFragmentDirections.globalActionOtherFragmentProfile(user.uid)

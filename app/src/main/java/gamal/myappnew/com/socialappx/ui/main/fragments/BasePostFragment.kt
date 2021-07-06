@@ -9,13 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
 import com.google.firebase.auth.FirebaseAuth
+import gamal.myappnew.com.socialappx.R
 import gamal.myappnew.com.socialappx.other.EventObserver
 import gamal.myappnew.com.socialappx.ui.adapters.PostAdapter
 import gamal.myappnew.com.socialappx.ui.adapters.UserAdapter
 import gamal.myappnew.com.socialappx.ui.auth.snackbar
+import gamal.myappnew.com.socialappx.ui.dialogs.CommentDialogDirections
 import gamal.myappnew.com.socialappx.ui.dialogs.DeletePostDialog
 import gamal.myappnew.com.socialappx.ui.dialogs.LikedByDialog
 import gamal.myappnew.com.socialappx.ui.viewmodel.BasePostViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 abstract class BasePostFragment(
@@ -60,9 +63,30 @@ abstract class BasePostFragment(
             basePostViewModel.getUsers(post.likedBy)
         }
 
-        // user name clicked
+        // user name clicked and image
+        postAdapter.setOnUserClickListener { uid->
+            if(FirebaseAuth.getInstance().uid!! == uid) {
+                requireActivity().bottomNavigationView.selectedItemId = R.id.profileFragment
+                return@setOnUserClickListener
+            }
+            findNavController().navigate(
+                OtherProfileFragmentDirections.globalActionOtherFragmentProfile(uid)
+            )
+        }
 
-        // image clicked
+        // show comments
+        postAdapter.setOnCommentsClickListener {post->
+//            findNavController().navigate(
+//                R.id.globalActionCommentDialog,
+//                Bundle().apply{
+//                   putString("postId",post.id)
+//                }
+//            )
+
+            findNavController().navigate(
+                CommentDialogDirections.globalActionCommentDialog(post.id)
+            )
+        }
 
 
 

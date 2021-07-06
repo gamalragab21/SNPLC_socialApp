@@ -1,6 +1,7 @@
 package gamal.myappnew.com.socialappx.repositories
 
 import android.net.Uri
+import gamal.myappnew.com.socialappx.data.entities.Comment
 import gamal.myappnew.com.socialappx.data.entities.Post
 import gamal.myappnew.com.socialappx.data.entities.User
 import gamal.myappnew.com.socialappx.other.Resource
@@ -15,4 +16,7 @@ interface MainRepository {
     suspend fun getPostsForProfile(uid:String=""):Resource<List<Post>>
     suspend fun toggleFollowForUser(uid:String):Resource<Boolean>
     suspend fun searchUser(query:String):Resource<List<User>>
+    suspend fun createComment(commentText:String,postId:String):Resource<Comment>
+    suspend fun deleteComment(comment:Comment):Resource<Comment>
+    suspend fun getCommentForPost(postId:String):Resource<List<Comment>>
 }
