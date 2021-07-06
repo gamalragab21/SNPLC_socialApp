@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SocialAppX</string>
-    <string name="your_profile">Your Profile</string>
+    <string name="your_profile">Profile</string>
 
     <string name="home">Home</string>
 
@@ -32,7 +32,9 @@
 
     <string name="repeat_password">Repeat Password</string>
 
-    <string name="success_registration">Successfully registered account</string>
+    <string name="success_registration">Successfully registered account , go to login</string>
+
+    <string name="success_posts">Successfully Uploaded Post</string>
 
     <string name="error_password_too_short">The password must be at least %d digits long</string>
 

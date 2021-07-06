@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "418054416994",
+    "project_id": "snplc-1d8bb",
+    "storage_bucket": "snplc-1d8bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418054416994:android:b943687c4534515899bf3b",
+        "android_client_info": {
+          "package_name": "gamal.myappnew.com.snplcsocialmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418054416994-mhueg4ldssqjm74ae39hrr4prc92se61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2UaPSvtGkZAxYit2575511282lJwuIPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418054416994-mhueg4ldssqjm74ae39hrr4prc92se61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418054416994:android:61fcacdc6c8a5f9a99bf3b",
+        "android_client_info": {
+          "package_name": "gamal.myappnew.com.socialappx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418054416994-mhueg4ldssqjm74ae39hrr4prc92se61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2UaPSvtGkZAxYit2575511282lJwuIPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418054416994-mhueg4ldssqjm74ae39hrr4prc92se61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

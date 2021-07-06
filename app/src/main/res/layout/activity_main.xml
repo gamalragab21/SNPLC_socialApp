@@ -20,6 +20,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:layout_width="match_parent"
+            app:navGraph="@navigation/main_nav_graph"
             android:layout_height="match_parent"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true" />
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
+            app:menu="@menu/bottom_nav_menu"
             app:itemIconTint="@drawable/bottom_nav_selector"
             android:background="#00000000"/>
 

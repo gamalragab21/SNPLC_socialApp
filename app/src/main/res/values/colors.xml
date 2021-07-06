@@ -9,9 +9,11 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="colorPrimary">#08FF04</color>
+<!--    <color name="colorPrimary">#08FF04</color>-->
+    <color name="colorPrimary">#FBA83C</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#08FF04</color>
+<!--    <color name="colorAccent">#08FF04</color>-->
+    <color name="colorAccent">#0A8791</color>
     <color name="mediumDarkBackground">#404040</color>
     <color name="darkBackground">#202020</color>
     <color name="lightBackground">#808080</color>

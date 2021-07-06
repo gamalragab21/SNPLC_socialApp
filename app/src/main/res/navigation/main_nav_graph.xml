@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.HomeFragment"
+        android:label="HomeFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit"
+        />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.SearchFragment"
+        android:label="SearchFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit"
+        />
+    <fragment
+        android:id="@+id/createPostFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.CreatePostFragment"
+        android:label="CreatePostFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit"
+        />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.SettingsFragment"
+        android:label="SettingsFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit"
+        />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        app:enterAnim="@anim/enter"
+        app:exitAnim="@anim/exit"
+        app:popEnterAnim="@anim/pop_enter"
+        app:popExitAnim="@anim/pop_exit"
+        />
+
+    <action android:id="@+id/globalActionCreatePost"
+         app:destination="@id/createPostFragment"/>
+
+    <action android:id="@+id/globalActionOtherFragmentProfile"
+        app:destination="@id/otherProfileFragment"/>
+
+
+    <fragment
+        android:id="@+id/otherProfileFragment"
+        android:name="gamal.myappnew.com.socialappx.ui.main.fragments.OtherProfileFragment"
+        android:label="OtherProfileFragment" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+    </fragment>
+</navigation>
